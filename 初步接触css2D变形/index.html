@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>初步接触css2D变形</title>
+        <style>
+            div{
+                display: inline-block;
+                width: 60px;
+                height: 68px;
+                border: 2px solid #f5f5f5;
+                background-color: #f7f6f6;
+                text-align: center;
+                line-height: 68px;
+                margin-top: 25px;
+                margin-left: 30px;
+            }
+            .box1{
+                transform: skewX(30deg);
+                -webkit-transform: skewX(30deg);
+                -moz-transform: skewX(30deg);
+                -o-transform: skewX(30deg);
+            }
+            .box2{
+                transform: scaleX(0.5);
+                -webkit-transform: scaleX(0.5);
+                -moz-transform: scaleX(0.5);
+                -o-transform: scaleX(0.5);
+            }
+            .box3{
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+            }
+            .box4{
+                transform: translate(10px,20px);
+                -webkit-transform: translate(10px,20px);
+                -moz-transform: translate(10px,20px);
+                -o-transform: translate(10px,20px);
+            }
+            .box5{
+                transform: skewX(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);
+                -webkit-transform: skewX(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);
+                -moz-transform: skewX(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);
+                -o-transform: skewX(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="box0">box0</div>
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+        <div class="box4">box4</div>
+        <div class="box5">box5</div>
+    </body>
+</html>
