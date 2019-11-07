@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>3D空间的卡片翻转动效</title>
+        <style>
+            .container{
+                position: relative;
+                height: 350px;
+                width: 250px;
+                perspective: 1000;
+                -webkit-perspective: 1000;
+                margin: 150px auto 0;
+                cursor: pointer;
+            }
+            .up,.down{
+                position: absolute;
+                backface-visibility: hidden;
+                -webkit-backface-visibility:hidden;
+                transition: all 1s;
+            }
+            .container .down{
+                transform: rotateY(180deg);
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -o-transform: rotateY(180deg);
+            }
+            .container:hover>.up{
+                transform: rotateY(-180deg);
+                -webkit-transform: rotateY(-180deg);
+                -moz-transform: rotateY(-180deg);
+                -o-transform: rotateY(-180deg);
+            }
+            .container:hover>.down{
+                transform: rotateY(0deg);
+                -webkit-transform: rotateY(0deg);
+                -moz-transform: rotateY(0deg);
+                -o-transform: rotateY(0deg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="up">
+                <img src="img/正面.jpg" alt="" />
+            </div>
+            <div class="down">
+                <img src="img/反面.jpg" alt="" />
+            </div>
+        </div>
+    </body>
+</html>
