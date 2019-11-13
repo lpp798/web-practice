@@ -1,0 +1,10 @@
+.container>table{
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.container>table th, .container>table td{
+    border: 2px solid #b8b7b7;
+    padding: 8px 8px;
+    text-align: center;
+}
