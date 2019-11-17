@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MVVM学院-2.4事件处理</title>
+        <style>
+            .parent,.parent>input{
+                color: rgb(107, 243, 243);
+                font-weight: 700;
+            }
+            .grandparent,.grandparent>input{
+                color: rgb(231, 118, 161);
+                font-weight: 700;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <script src="https://unpkg.com/san@latest/dist/san.dev.js"></script>
+        <script>
+            //子组件
+            var Child = san.defineComponent({
+                template: `
+                <div>
+                <label>子组件：<input typr="text" value="{=input=}"/></label>
+                <button on-click="sendMsg">通知父组件</button>
+                </div>
+                `,
+                //初始化生命周期钩子，
+                inited: function(){
+                    this.data.set('input','');
+                },
+                sendMsg(){
+                    let input = this.data.get('input');
+                    //向父组件派发一个事件,参数是input
+                    this.fire('childclick',input);
+                    this.dispatch('UI:input',input);
+                }
+            });
+            var Parent = san.defineComponent({
+                template:`
+                <div>
+                <ui-child on-childclick="getMsg" input="{{value}}"></ui-child>
+                <label class="parent">父组件：<input typr="text" value="{=value=}"/></label>
+                </div>
+                `,
+                components: {
+                    'ui-child': Child
+                },
+                initData(){
+                    return {
+                        value: '静静等待用户输入'
+                    }
+                },
+                //arg就是传过来的输入的字符串
+                getMsg(arg){
+                    this.data.set('value',arg);
+                },
+
+            });
+            var Grandparent = san.defineComponent({
+                template:`
+                <div>
+                <ui-parent input="{{value}}"></ui-parent>
+                <label class="grandparent">更高层的父组件：<input typr="text" value="{{value}}"/></label>
+                </div>
+                `,
+                components: {
+                    'ui-parent': Parent
+                },
+                initData(){
+                    return {
+                        value: '我也静静等待用户输入'
+                    }
+                },
+                messages: {
+                    'UI:input':function(arg){
+                        this.data.set('value',arg.value);
+                    }
+                }
+            });
+            var myApp = new Grandparent();
+            myApp.attach(document.body);
+        </script>
+    </body>
+
+</html>
